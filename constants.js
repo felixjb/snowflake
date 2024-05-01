@@ -1,63 +1,79 @@
 // @flow
-import * as d3 from 'd3'
+import * as d3 from "d3";
 
-export type TrackId = 'MOBILE' | 'WEB_CLIENT' | 'FOUNDATIONS' | 'SERVERS' |
-  'PROJECT_MANAGEMENT' | 'COMMUNICATION' | 'CRAFT' | 'INITIATIVE' |
-  'CAREER_DEVELOPMENT' | 'ORG_DESIGN' | 'WELLBEING' | 'ACCOMPLISHMENT' |
-  'MENTORSHIP' | 'EVANGELISM' | 'RECRUITING' | 'COMMUNITY'
-export type Milestone = 0 | 1 | 2 | 3 | 4 | 5
+export type TrackId =
+  | "FLEXIBLE_THINKING"
+  | "DECISION_MAKING"
+  | "PROFESSIONAL_GROWTH"
+  | "HIRING"
+  | "EFFECTIVE_COMMUNICATION"
+  | "COLLABORATION"
+  | "ORGANIZATIONAL_HEALTH"
+  | "WORK_BREAKDOWN"
+  | "BUSINESS_ACUMEN"
+  | "TECHNICAL_STRATEGY"
+  | "CODE_FLUENCY"
+  | "SOFTWARE_DESIGN"
+  | "ARCHITECTURE_DESIGN";
+
+export type Milestone = 0 | 1 | 2 | 3 | 4 | 5;
 
 export type MilestoneMap = {
-  'MOBILE': Milestone,
-  'WEB_CLIENT': Milestone,
-  'FOUNDATIONS': Milestone,
-  'SERVERS': Milestone,
-  'PROJECT_MANAGEMENT': Milestone,
-  'COMMUNICATION': Milestone,
-  'CRAFT': Milestone,
-  'INITIATIVE': Milestone,
-  'CAREER_DEVELOPMENT': Milestone,
-  'ORG_DESIGN': Milestone,
-  'WELLBEING': Milestone,
-  'ACCOMPLISHMENT': Milestone,
-  'MENTORSHIP': Milestone,
-  'EVANGELISM': Milestone,
-  'RECRUITING': Milestone,
-  'COMMUNITY': Milestone
-}
-export const milestones = [0, 1, 2, 3, 4, 5]
+  FLEXIBLE_THINKING: Milestone,
+  DECISION_MAKING: Milestone,
+  PROFESSIONAL_GROWTH: Milestone,
+  HIRING: Milestone,
+  EFFECTIVE_COMMUNICATION: Milestone,
+  COLLABORATION: Milestone,
+  ORGANIZATIONAL_HEALTH: Milestone,
+  WORK_BREAKDOWN: Milestone,
+  BUSINESS_ACUMEN: Milestone,
+  TECHNICAL_STRATEGY: Milestone,
+  CODE_FLUENCY: Milestone,
+  SOFTWARE_DESIGN: Milestone,
+  ARCHITECTURE_DESIGN: Milestone,
+};
+
+export const milestones = [0, 1, 2, 3, 4, 5];
 
 export const milestoneToPoints = (milestone: Milestone): number => {
   switch (milestone) {
-    case 0: return 0
-    case 1: return 1
-    case 2: return 3
-    case 3: return 6
-    case 4: return 12
-    case 5: return 20
-    default: return 0
+    case 0:
+      return 0;
+    case 1:
+      return 1;
+    case 2:
+      return 3;
+    case 3:
+      return 6;
+    case 4:
+      return 12;
+    case 5:
+      return 20;
+    default:
+      return 0;
   }
-}
+};
 
 export const pointsToLevels = {
-  '0': '1.1',
-  '5': '1.2',
-  '11': '1.3',
-  '17': '2.1',
-  '23': '2.2',
-  '29': '2.3',
-  '36': '3.1',
-  '43': '3.2',
-  '50': '3.3',
-  '58': '4.1',
-  '66': '4.2',
-  '74': '4.3',
-  '90': '5.1',
-  '110': '5.2',
-  '135': '5.3',
-}
+  "0": "1.1",
+  "5": "1.2",
+  "11": "1.3",
+  "17": "2.1",
+  "23": "2.2",
+  "29": "2.3",
+  "36": "3.1",
+  "43": "3.2",
+  "50": "3.3",
+  "58": "4.1",
+  "66": "4.2",
+  "74": "4.3",
+  "90": "5.1",
+  "110": "5.2",
+  "135": "5.3",
+};
 
-export const maxLevel = 135
+export const maxLevel = 135;
 
 export type Track = {
   displayName: string,
@@ -66,1147 +82,809 @@ export type Track = {
   milestones: {
     summary: string,
     signals: string[],
-    examples: string[]
-  }[]
-}
+    examples: string[],
+  }[],
+};
 
 type Tracks = {|
-  'MOBILE': Track,
-  'WEB_CLIENT': Track,
-  'FOUNDATIONS': Track,
-  'SERVERS': Track,
-  'PROJECT_MANAGEMENT': Track,
-  'COMMUNICATION': Track,
-  'CRAFT': Track,
-  'INITIATIVE': Track,
-  'CAREER_DEVELOPMENT': Track,
-  'ORG_DESIGN': Track,
-  'WELLBEING': Track,
-  'ACCOMPLISHMENT': Track,
-  'MENTORSHIP': Track,
-  'EVANGELISM': Track,
-  'RECRUITING': Track,
-  'COMMUNITY': Track
-|}
+  FLEXIBLE_THINKING: Track,
+  DECISION_MAKING: Track,
+  PROFESSIONAL_GROWTH: Track,
+  HIRING: Track,
+  EFFECTIVE_COMMUNICATION: Track,
+  COLLABORATION: Track,
+  ORGANIZATIONAL_HEALTH: Track,
+  WORK_BREAKDOWN: Track,
+  BUSINESS_ACUMEN: Track,
+  TECHNICAL_STRATEGY: Track,
+  CODE_FLUENCY: Track,
+  SOFTWARE_DESIGN: Track,
+  ARCHITECTURE_DESIGN: Track,
+|};
 
 export const tracks: Tracks = {
-  "MOBILE": {
-    "displayName": "Mobile",
-    "category": "A",
-    "description": "Develops expertise in native mobile platform engineering, such as iOS or Android",
-    "milestones": [{
-      "summary": "Works effectively within established iOS or Android architectures, following current best practices",
-      "signals": [
-        "Delivers features requiring simple local modifications",
-        "Adds simple actions that call server endpoints",
-        "Reuses existing components appropriately",
-      ],
-      "examples": [
-        "Added existing button to a different iOS surface",
-        "Add follow button for publications on Android",
-        "Fetched and displayed a new stream, using existing stream item styles",
-      ],
-    }, {
-      "summary": "Develops new instances of existing architecture, or minor improvements to existing architecture",
-      "signals": [
-        "Defines new useful and appropriate proto-generated objects",
-        "Creates simple new activities on Android",
-        "Migrates code from old patterns to new patterns",
-      ],
-      "examples": [
-        "Upgraded SDWebImage to a new major version",
-        "Added support for rendering a new type of stream item",
-        "Prototyped a simple new feature quickly",
-      ],
-    }, {
-      "summary": "Designs major new features and demonstrates a nuanced understanding of mobile platform constraints",
-      "signals": [
-        "Implements complex features with a large product surface area",
-        "Works effectively with  Android reactive programming framework",
-        "Adds support for new iOS features after a major iOS version upgrade",
-      ],
-      "examples": [
-        "Designed iOS caching strategy for offline reading",
-        "Built series reader on Android",
-        "Informed the team about recent best practice changes and deprecations",
-      ],
-    }, {
-      "summary": "Builds complex, reusable architectures that pioneer best practices and enable engineers to work more effectively",
-      "signals": [
-        "Pioneers architecture migration strategies that reduce programmer burden",
-        "Fixes subtle memory management issues",
-        "Implements interactive dismissals that bring delight",
-      ],
-      "examples": [
-        "Upgraded CocoaPods to a new major version",
-        "Designed architecture for fetching and rendering stream items",
-        "Migrated Android persistance layer to reactive programming",
-      ],
-    }, {
-      "summary": "Is an industry-leading expert in mobile engineering or sets strategic mobile direction for an eng team",
-      "signals": [
-        "Defines long-term goals and ensures active projects are in service of them",
-        "Designs and builds innovative, industry-leading UI interactions",
-        "Invents new techniques to responsibly stretch limits of the Android platform",
-      ],
-      "examples": [
-        "Defined and drove complete migration plan to Swift or Kotlin",
-        "Implemented Android recycler views before platform support existed",
-        "Pioneered application-level abstractions for multi-app environment",
-      ],
-    }],
+  FLEXIBLE_THINKING: {
+    displayName: "Flexible thinking",
+    category: "A",
+    description:
+      "Ability to adapt problem-solving approaches in dynamic environments, incorporating new perspectives and ideas and getting things done.",
+    milestones: [
+      {
+        summary: "IC3",
+        signals: [
+          "You prioritize impactful tasks and don't over complicate your work. When necessary, you propose appropriate scope adjustments.",
+          "You have an open mindset to change, and are enthusiastic about new initiatives.",
+          "You are learning to stay calm under pressure and building practices to take care of your well-being.",
+          "You find new and creative ways to accomplish your work, and share your ideas with the team.",
+          "You make your best effort to decide and act responsibly without having the total picture during routine business and when in high pressure situations.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC4",
+        signals: [
+          "You can identify when your results aren’t moving the needle for our business/team goals or serving the needs of customers in a meaningful way and work with your manager and TL to redirect your focus.",
+          "You remain resilient through change by staying calm under pressure and taking care of your well-being.",
+          "You navigate ambiguity by focusing on the greater purpose, goals, and desired impact to move forward one step at a time.",
+          "You effectively handle risk, change, and uncertainty within your team.",
+          "When you encounter barriers, you unblock yourself and your team by proactively assessing and eliminating the root cause.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC5",
+        signals: [
+          "You find new and creative ways of leveraging customer insights and including customer voices to influence strategy.",
+          "You exemplify the “leave it better than you found it” philosophy.",
+          'You reject the "not my problem" mentality and seize opportunities to contribute with enthusiasm.',
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC6",
+        signals: ["Same as previous"],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC7",
+        signals: ["Same as previous"],
+        examples: ["to de added"],
+      },
+    ],
   },
 
-  "WEB_CLIENT": {
-    "displayName": "Web client",
-    "category": "A",
-    "description": "Develops expertise in web client technologies, such as HTML, CSS, and JavaScript",
-    "milestones": [{
-      "summary": "Works effectively within established web client architectures, following current best practices",
-      "signals": [
-        "Makes minor modifications to existing screens",
-        "Fixes simple design quality issues",
-        "Uses CSS appropriately, following style guide",
-      ],
-      "examples": [
-        "Implemented sticky footer on the post page",
-        "Hooked up the action to dismiss a post from a stream",
-        "Built PaymentHistory screen using ResponseScreen",
-      ],
-    }, {
-      "summary": "Develops new instances of existing architecture, or minor improvements to existing architecture",
-      "signals": [
-        "Makes sensible abstractions based on template and code patterns",
-        "Specs and builds interactive components independently",
-        "Prototypes simple new features quickly",
-      ],
-      "examples": [
-        "Built credit card input component",
-        "Created shared buttons template",
-        "Built modal system",
-      ],
-    }, {
-      "summary": "Designs major new features and demonstrates a nuanced understanding of browser constraints",
-      "signals": [
-        "Provides useful design feedback and suggests feasible alternatives",
-        "Performs systemic tasks to significantly minimise bundle size",
-        "Acts a caretaker for all of web client code",
-      ],
-      "examples": [
-        "Designed font loading strategy for Medium",
-        "Researched utility of service workers for Medium",
-        "Designed and implemented ResponseScreen",
-      ],
-    }, {
-      "summary": "Builds complex, reusable architectures that pioneer best practices and enable engineers to work more effectively",
-      "signals": [
-        "Pioneers architecture migrations that reduce programmer burden",
-        "Implements complex UI transitions that bring delight",
-        "Makes architectural decisions that eliminate entire classes of bugs",
-      ],
-      "examples": [
-        "Designed Medium's post morpher and delta system",
-        "Implemented Medium's scrolling text over image blur",
-        "Designed and pioneered proto-based model storage",
-      ],
-    }, {
-      "summary": "Is an industry-leading expert in web client or sets strategic web client direction for an eng team",
-      "signals": [
-        "Invents new techniques to innovate and overcome browser constraints",
-        "Identifies and solved systemic problems with current architecture",
-        "Defines a long-term vision for web client and ensures projects are in service of it",
-      ],
-      "examples": [
-        "Invented CSS in JS",
-        "Defined and drove migration strategy to Lite",
-        "Implemented unidirectional data flow to completion",
-      ],
-    }],
+  DECISION_MAKING: {
+    displayName: "Decision Making",
+    category: "A",
+    description:
+      "The process and ability to make choices that drive business outcomes, including strategic and tactical decisions.",
+    milestones: [
+      {
+        summary: "IC3",
+        signals: [
+          "You identify and gather input from the right stakeholders and consider customer needs to make informed and timely decisions.",
+          "You escalate to your manager or more senior team members when you get stuck and need help with a decision concerning your deliverables or priorities, always striving to provide a well-thought-out and timely proposition.",
+          "You are working to develop a bias for action.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC4",
+        signals: [
+          "You make informed decisions by consulting the right stakeholders and balancing details with the big picture. You execute against the spirit, and not just the letter of the requirements.",
+          "You understand the implications of your decisions and adjust your approach based on the impact and risk in the short and long-term (e.g. choosing a more iterative approach based on the degree of uncertainty with respect to product fit, while maintaining a view of the long term arc needed to - accomplish business goals).",
+          "You make timely decisions and don’t cut corners that would compromise your customer’s trust or our strategy.",
+          "When possible you leverage customer insights or data to inform decisions, balancing value for the customer with other business goals.",
+          "You have a bias for action, act with urgency and deliver high-quality work that will add the most value for our business, cross-functional stakeholders, and customers.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC5",
+        signals: [
+          "You make informed decisions by having productive debate with the right stakeholders, seeking diverse perspectives, balancing details with the big picture, and optimizing for the company, then the team and lastly the individual.",
+          "You consistently leverage insights about customers to inform decisions, balancing value for the customer with other business goals.",
+          "You decide and act responsibly in your work with your team without having the total picture during routine business, as well as when in high pressure situations.",
+          "You know when to seek consensus and when to make a decision swiftly on your own.",
+          "You make decisions that support the goals of related teams and outside partners, avoiding choices that benefit only your immediate team if they negatively impact others.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC6",
+        signals: [
+          "You exercise judgment that favors the priorities of the wider Tech domain rather than favoring locally optimal outcomes.",
+          "You transcend organizational boundaries and proactively identify the best way to leverage yourself and get things done.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC7",
+        signals: ["Same as previous"],
+        examples: ["to de added"],
+      },
+    ],
   },
 
-  "FOUNDATIONS": {
-    "displayName": "Foundations",
-    "category": "A",
-    "description": "Develops expertise in foundational systems, such as deployments, pipelines, databases and machine learning",
-    "milestones": [{
-      "summary": "Works effectively within established structures, following current best practices",
-      "signals": [
-        "Writes thorough postmortems for service outages",
-        "Makes simple configuration changes to services",
-        "Performs backfills safely and effectively, without causing pages",
-      ],
-      "examples": [
-        "Made safe and effective Ansible changes",
-        "Implemented new ETL pipelines based on existing ones",
-        "Resolved out of disk errors independently",
-      ],
-    }, {
-      "summary": "Develops new instances of existing architecture, or minor improvements to existing architecture",
-      "signals": [
-        "Made minor version upgrades to technologies",
-        "Builds machine learning jobs within the ML framework",
-        "Triages service issues correctly and independently",
-      ],
-      "examples": [
-        "Upgraded NodeJS from 8.0 to 8.1.1",
-        "Built custom packages for RPMs",
-        "Improved ETL efficiency by improving Dynamo to S3 loading",
-      ],
-    }, {
-      "summary": "Designs standalone systems of moderate complexity, or major new features in existing systems",
-      "signals": [
-        "Acts as primary maintainer for existing critical systems",
-        "Designs moderately complex systems",
-        "Makes major version upgrades to libraries",
-      ],
-      "examples": [
-        "Designed Ansible configuration management",
-        "Built Medium's realtime stats pipeline",
-        "Designed flexible framework for writing machine learning jobs",
-      ],
-    }, {
-      "summary": "Builds complex, reusable architectures that pioneer best practices for other engineers, or multi-system services",
-      "signals": [
-        "Designs complex projects that encompass multiple systems and technologies",
-        "Demonstrates deep knowledge of foundational systems",
-        "Introduces new databases and technologies to meet underserved needs",
-      ],
-      "examples": [
-        "Designed and built BBFD",
-        "Designed AWS configuration management",
-        "Introduced Kinesis and pioneered streaming events pipeline",
-      ],
-    }, {
-      "summary": "Is an industry-leading expert in foundational engineering or sets strategic foundational direction for an eng team",
-      "signals": [
-        "Designs transformational projects in service of long-term goals",
-        "Defines the strategic vision for foundational work and supporting technologies",
-        "Invents industry-leading techniques to solve complex problems",
-      ],
-      "examples": [
-        "Invented a novel ML technique that advanced the state of the art",
-        "Defined and developed Medium's continuous delivery strategy",
-        "Developed and implemented HA strategy",
-      ],
-    }],
+  PROFESSIONAL_GROWTH: {
+    displayName: "Professional Growth",
+    category: "A",
+    description:
+      "Ongoing development of one's skills and capabilities to take on larger roles and navigate complex challenges.",
+    milestones: [
+      {
+        summary: "IC3",
+        signals: [
+          "You model integrity and have a high standard of excellence for your work.",
+          "You have self-awareness about your strengths and areas for development.",
+          "You drive discussions with your manager about aspirational goals and seek out opportunities to learn and grow.",
+          "You are starting to deliver praise and constructive feedback in a useful manner.",
+          "You know how to receive feedback and work to use feedback that you receive as a tool for growth.",
+          "You understand our pull requests and code review best practices and try to apply them while asking and receiving feedback.",
+          "You drive yourself to grow and achieve your own goals.",
+          "You seek out mentorship to grow your own experience.",
+          "You work toward building a study routine with knowledge sources, such as newsletters, podcasts, books, twitter relevant people, etc.",
+          "You own your career growth and understand that your manager will provide all the support you'll need to grow, but also that you are the protagonist of your own success.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC4",
+        signals: [
+          "You consistently deliver praise and constructive feedback to your teammates and manager in a useful manner that fosters psychological safety.",
+          "You follow up on sent feedback to let the person know whether improvement has been noted.",
+          "You follow up on received feedback to check if the person that sent it has noticed improvement.",
+          "You understand the importance of lifelong learning and actively enhance your study methods and self-learning strategies to continuously advance your expertise in line with industry evolution.",
+          "You build tools and produce technical documentation to improve developer efficiency and drive alignment within your team.",
+          "You are self-aware about your strengths and areas of development and act upon them.",
+          "You sometimes make code reviews for other teams.",
+          "You actively support the growth of your teammates by taking into account their unique skills, strengths, backgrounds and working styles.",
+          "You actively look for opportunities to mentor new hires, interns and apprentices.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC5",
+        signals: [
+          "You foster a culture of delivering praise and constructive feedback and seeking out feedback within their team and team's respective business stakeholders.",
+          "You actively provide high-quality reviews of your colleagues' work, including documentation and code, across different teams.",
+          "You actively identify and support areas of growth for your teammates that take into account their unique skills, strengths, backgrounds and working styles.",
+          "You exemplify lifelong learning, consistently integrating industry knowledge and learning into your daily practices to maintain a competitive edge.",
+          "You devote time to spreading your knowledge widely via talks (Tech Days, Engineering Alignment, Tech Talks), blog posts or written documentation.",
+          "You are a strong leader for your team with your multiplier impact beginning to also extend outside your team.",
+          "You proactively and consistently upskill less-experienced members by helping them with their craft, providing guidance, and setting a good example.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC6",
+        signals: [
+          "You foster a culture of delivering praise and constructive feedback and seeking out feedback across several teams as well as their respective business stakeholders.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC7",
+        signals: [
+          "You foster a culture of delivering praise and constructive feedback and seeking out feedback across the organization.",
+        ],
+        examples: ["to de added"],
+      },
+    ],
   },
 
-  "SERVERS": {
-    "displayName": "Servers",
-    "category": "A",
-    "description": "Develops expertise in server side engineering, using technologies such as Go, NodeJS, or Scala",
-    "milestones": [{
-      "summary": "Works effectively within established server side frameworks, following current best practices",
-      "signals": [
-        "Adds NodeJS endpoints using layers architecture",
-        "Adds golang endpoints using Gotham architecture",
-        "Makes minor server changes to support client needs",
-      ],
-      "examples": [
-        "Added IFTTT trigger for new bookmark to medium2",
-        "Added delete audio route to Buggle",
-        "Queried a Dynamo LSI appropriately",
-      ],
-    }, {
-      "summary": "Develops new instances of existing architecture, or minor improvements to existing architecture",
-      "signals": [
-        "Assesses correctness and utility of existing code and avoids blind copy-pasting",
-        "Generalizes code when appropriate",
-        "Determines data needs from product requirements",
-      ],
-      "examples": [
-        "Identified need for new index on Dynamo",
-        "Acted as caretaker for routes protos",
-        "Updated Facebook API version and codebase dependencies",
-      ],
-    }, {
-      "summary": "Designs standalone systems of moderate complexity, or major new features in existing systems",
-      "signals": [
-        "Acts as primary maintainer for existing critical systems",
-        "Integrates third party services effectively",
-        "Writes playbooks for new service maintenance",
-      ],
-      "examples": [
-        "Implemented Google Auth login to Medium",
-        "Implemented payments integration with Stripe",
-        "Built Textshots server",
-      ],
-    }, {
-      "summary": "Builds complex, reusable architectures that pioneer best practices for other engineers, or multi-system services",
-      "signals": [
-        "Delivers complex systems that achieve their goals",
-        "Avoids subtle architectural mistakes when considering new systems",
-        "Makes appropriate buy vs build choices",
-      ],
-      "examples": [
-        "Designed Medium's ranked feed architecture",
-        "Designed custom domains architecture",
-        "Created Gotham framework for creating Go services",
-      ],
-    }, {
-      "summary": "Is an industry-leading expert in server side engineering or sets strategic server side direction for an eng team",
-      "signals": [
-        "Designs transformational projects of significant complexity and scope",
-        "Makes decisions that have positive, long term, wide ranging consequences",
-        "Identifies and solves systemic problems with current architecture",
-      ],
-      "examples": [
-        "Researched, vetted, and selected Go as Medium's statically typed language",
-        "Defined microservices architecture and medium2 migration plan",
-        "Defined and implemented proprietary IP core to the company's success",
-      ],
-    }],
+  HIRING: {
+    displayName: "Hiring",
+    category: "A",
+    description:
+      "The process of identifying, evaluating, and selecting candidates to fill roles, shaping team composition and capabilities.",
+    milestones: [
+      {
+        summary: "IC3",
+        signals: [
+          "You refer awesome candidates to open positions at our company if you know individuals who fit the profile.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC4",
+        signals: [
+          "You give quality code reviews and feedback to candidates.",
+          "You are learning to interview and assess candidates to help us build a diverse and talented team. You try to provide timely, detailed, and evidence-based interview feedback.",
+          "You are able to represent your team’s initiatives and goals to candidates in a compelling way.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC5",
+        signals: [
+          "You actively contribute to interviewing and assessing candidates to help us build a diverse and talented team by conducting more advanced domain-specific and leveling interviews, asking good questions, and taking notes.",
+          "You contribute to debriefings and hiring decisions.",
+          "You gain the trust of candidates and can represent Lepaya's values, mission, strategy, and culture throughout the interview process.",
+          "You are an effective partner to the hiring manager and are able to represent your team’s technical challenges to candidates in an exciting way.",
+          "You make contributions to the hiring process, such as improvements on the challenges.",
+          "You attract talent for a variety of roles with diversity in mind.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC6",
+        signals: [
+          "You are an active participant in the hiring process for senior candidates, and managers (for example, by participating in hiring committees, debriefs, etc.).",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC7",
+        signals: ["Same as previous"],
+        examples: ["to de added"],
+      },
+    ],
   },
 
-  "PROJECT_MANAGEMENT": {
-    "displayName": "Project management",
-    "category": "B",
-    "description": "Delivers well-scoped programs of work that meet their goals, on time, to budget, harmoniously",
-    "milestones": [{
-      "summary": "Effectively delivers individual tasks",
-      "signals": [
-        "Estimates small tasks accurately",
-        "Delivers tightly-scoped projects efficiently",
-        "Writes effective technical specs outlining approach",
-      ],
-      "examples": [
-        "Wrote the technical spec for featured post images",
-        "Delivered stream item support for email digests",
-        "Delivered payment history dashboard",
-      ],
-    }, {
-      "summary": "Effectively delivers small personal projects",
-      "signals": [
-        "Performs research and considers alternative approaches",
-        "Balances pragmatism and polish appropriately",
-        "Defines and hits interim milestones",
-      ],
-      "examples": [
-        "Delivered promo editor",
-        "Delivered audio uploading for web client",
-        "Executed the recommends to claps backfill",
-      ],
-    }, {
-      "summary": "Effectively delivers projects through a small team",
-      "signals": [
-        "Delegates tasks to others appropriately",
-        "Integrates business needs into project planning",
-        "Chooses appropriate project management strategy based on context",
-      ],
-      "examples": [
-        "Ran project retro to assess improvement opportunities",
-        "Completed launch checklist unprompted for well controlled rollout",
-        "Facilitated project kickoff meeting to get buy-in",
-      ],
-    }, {
-      "summary": "Effectively delivers projects through a large team, or with a significant amount of stakeholders or complexity",
-      "signals": [
-        "Finds ways to deliver requested scope faster, and prioritizes backlog",
-        "Manages dependencies on other projects and teams",
-        "Leverages recognition of repeated project patterns",
-      ],
-      "examples": [
-        "Oversaw technical delivery of Hightower",
-        "Managed infrastructure migration to VPC",
-        "Involved marketing, legal, and appropriate functions at project start",
-      ],
-    }, {
-      "summary": "Manages major company pushes delivered by multiple teams",
-      "signals": [
-        "Considers external constraints and business objectives when planning",
-        "Leads teams of teams, and coordinates effective cross-functional collaboration",
-        "Owns a key company metric",
-      ],
-      "examples": [
-        "Managed technical migration to SOA",
-        "Lead technical delivery of 10/7",
-        "Delivered multi-month engineering project on time",
-      ],
-    }],
+  EFFECTIVE_COMMUNICATION: {
+    displayName: "Effective communication",
+    category: "A",
+    description:
+      "Effective transmission of ideas, feedback exchange, promoting growth, understanding and collaboration among stakeholders.",
+    milestones: [
+      {
+        summary: "IC3",
+        signals: [
+          "You explain detailed information accurately and articulately.",
+          "You proactively share relevant information and effectively contribute to discussions, including difficult task-level trade-offs that impact the product to your manager and team (including product/business stakeholders).",
+          "You communicate effectively, clearly, concisely in written and verbal form both technical and non technical subjects (commit messages, code code reviews, pull request descriptions, docs, meetings, slack messages, RFCs).",
+          "You aim to over communicate when the information is important, to guarantee shared understanding.",
+          "You actively listen and ask clarifying questions to others and ensure they are understood.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC4",
+        signals: [
+          "You are learning to tailor the level of abstraction of the message according to the audience.",
+          "You consistently over communicate when the information is important, to guarantee shared understanding.",
+          "You pay attention to nonverbal communication.",
+          "You are learning to hold crucial conversations even when uncomfortable.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC5",
+        signals: [
+          "You communicate proactively, effectively, clearly, concisely in written and verbal form both technical and non technical subjects, and in an audience-oriented way (technical and/or business language).",
+          "You successfully tailor the level of abstraction of the message according to the audience.",
+          "You foster a culture of clear, concise, effective, audience-oriented communication, ensuring everyone actively listens to others and are understood.",
+          "You influence stakeholders across a variety of audiences.",
+          "You are effective in holding crucial conversations even when uncomfortable.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC6",
+        signals: [
+          "You create crisp narratives to create understanding, influence others, and enable effective decision-making.",
+          "You fine tune your approach to getting buy-in and influencing stakeholders across a variety of audiences.",
+          "You can translate complex information into straightforward, easy-to-understand terms for your listeners.",
+          "You lead by example by holding crucial conversations even when they feel uncomfortable.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC7",
+        signals: [
+          "You develop compelling, clear and focused messages, and effectively present them at the executive level.",
+          "You successfully communicate effectively across the organization.",
+        ],
+        examples: ["to de added"],
+      },
+    ],
   },
 
-  "COMMUNICATION": {
-    "displayName": "Communication",
-    "category": "B",
-    "description": "Shares the right amount of information with the right people, at the right time, and listens effectively",
-    "milestones": [{
-      "summary": "Communicates effectively to close stakeholders when called upon, and incorporates constructive feedback",
-      "signals": [
-        "Communicates project status clearly and effectively",
-        "Collaborates with others with empathy",
-        "Asks for help at the appropriate juncture",
-      ],
-      "examples": [
-        "Updated The Watch before running a backfill",
-        "Updated project status changes in Asana promptly",
-        "Gave thoughtful check-in and check-out comments",
-      ],
-    }, {
-      "summary": "Communicates with the wider team appropriately, focusing on timeliness and good quality conversations",
-      "signals": [
-        "Practises active listening and suspension of attention",
-        "Ensures stakeholders are aware of current blockers",
-        "Chooses the appropriate tools for accurate and timely communication",
-      ],
-      "examples": [
-        "Received and integrated critical feedback positively",
-        "Created cross-team Slack channel for payments work",
-        "Spoke to domain experts before writing spec",
-      ],
-    }, {
-      "summary": "Proactively shares information, actively solicits feedback, and facilitates communication for multiple stakeholders",
-      "signals": [
-        "Resolves communication difficulties between others",
-        "Anticipates and shares schedule deviations in plenty of time",
-        "Manages project stakeholder expectations effectively",
-      ],
-      "examples": [
-        "Directed team response effectively during outages",
-        "Gave a substantial Eng All Hands presentation on React",
-        "Gave notice of upcoming related work in Eng Briefing",
-      ],
-    }, {
-      "summary": "Communicates complex ideas skillfully and with nuance, and establishes alignment within the wider organization",
-      "signals": [
-        "Communicates project risk and tradeoffs skillfully and with nuance",
-        "Contextualizes and clarifies ambiguous direction and strategy for others",
-        "Negotiates resourcing compromises with other teams",
-      ],
-      "examples": [
-        "Lead off-site workshop on interviewing",
-        "Wrote Medium's growth framework and rationale",
-        "Aligned the entire organization around claps",
-      ],
-    }, {
-      "summary": "Influences outcomes at the highest level, moves beyond mere broadcasting, and sets best practices for others",
-      "signals": [
-        "Defines processes for clear communication for the entire team",
-        "Shares the right amount of information with the right people, at the right time",
-        "Develops and delivers plans to execs, the board, and outside investors",
-      ],
-      "examples": [
-        "Organized half year check-in company offsite",
-        "Created the communication plan for a large organizational change",
-        "Presented to the board about key company metrics and projects",
-      ],
-    }],
+  COLLABORATION: {
+    displayName: "Collaboration",
+    category: "A",
+    description:
+      "Working cohesively with others towards common goals, ensuring cross-functional alignment and synergy.",
+    milestones: [
+      {
+        summary: "IC3",
+        signals: [
+          "You can effectively collaborate and adopt necessary tools and practices (e.g., your local dev environment, pair programming) that get work done.",
+          "You work with your manager to engage in productive conflict with thoughtful questioning and have the courage to state your point of view with your teammates.",
+          "You avoid blame, clarify problems to focus on solutions, and “disagree and commit” when necessary to move decisions forward.",
+          "You are learning pair programming techniques, proactively seek out sessions, and come well prepared with research, notes, and questions to ensure productive collaboration.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC4",
+        signals: [
+          "You build relationships across teams and help get to positive outcomes.",
+          "You navigate productive conflict and express your viewpoint with confidence, while proactively communicating and coordinating your team's needs with other engineering groups.",
+          "You are capable of working with cross-functional stakeholders to identify technical blindspots and clarify ambiguity in their ideas.",
+          "You understand the concept of social capital and use it to build trust and foster relationships that enhance collaboration.",
+          "You frequently initiate pair programming sessions, collaborating effectively as both a navigator and driver, enhancing collective code quality and knowledge.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC5",
+        signals: [
+          "You proactively communicate and coordinate your team’s requirements with other groups and teams.",
+          "You engage in productive conflict with thoughtful questioning and have the courage to state your point of view in your interactions across the organization.",
+          "You actively foster a team environment where pair programming is standard practice, sharing your expertise to elevate the entire team's development process.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC6",
+        signals: [
+          "You help break down silos within and across functions and influence others to reach the best outcome for Lepaya regardless of level/title.",
+          "You build deep cross-functional relationships, facilitate the right conversations, and settle disagreements by managing different viewpoints.",
+          "You balance multiple perspectives and disagree and commit when necessary to move key company decisions, and critical priorities forward.",
+          "You transcend organizational boundaries and proactively identify the best ways to leverage yourself and solve problems.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC7",
+        signals: ["Same as previous"],
+        examples: ["to de added"],
+      },
+    ],
   },
 
-  "CRAFT": {
-    "displayName": "Craft",
-    "category": "B",
-    "description": "Embodies and promotes practices to ensure excellent quality products and services",
-    "milestones": [{
-      "summary": "Delivers consistently good quality work",
-      "signals": [
-        "Tests new code thoroughly, both locally, and in production once shipped",
-        "Writes tests for every new feature and bug fix",
-        "Writes clear comments and documentation",
-      ],
-      "examples": [
-        "Caught a bug on Hatch before it went live",
-        "Landed non-trivial PR with no caretaker comments",
-        "Wrote hermetic tests for the happy and sad cases",
-      ],
-    }, {
-      "summary": "Increases the robustness and reliability of codebases, and devotes time to polishing products and systems",
-      "signals": [
-        "Refactors existing code to make it more testable",
-        "Adds tests for uncovered areas",
-        "Deletes unnecessary code and deprecates proactively when safe to do so",
-      ],
-      "examples": [
-        "Requested tests for a PR when acting as reviewer",
-        "Reduced the number of zelda fitzgerald exceptions",
-        "Fixed a TODO for someone else in the codebase",
-      ],
-    }, {
-      "summary": "Improves others' ability to deliver great quality work",
-      "signals": [
-        "Implements systems that enable better testing",
-        "Gives thoughtful code reviews as a domain expert",
-        "Adds tooling to improve code quality",
-      ],
-      "examples": [
-        "Improved PRB to run the same volume of tests faster",
-        "Simplified hermetic test data modification",
-        "Created fixture system for visual quality",
-      ],
-    }, {
-      "summary": "Advocates for and models great quality with proactive actions, and tackles difficult and subtle system issues",
-      "signals": [
-        "Builds systems so as to eliminate entire classes of programmer error",
-        "Focuses the team on quality with regular reminders",
-        "Coordinates Watch priorities and projects",
-      ],
-      "examples": [
-        "Added code coverage reporting to iOS CI pipeline",
-        "Iterated repeatedly to develop Medium's underlines solution",
-        "Defined and oversaw plan for closing Heartbleed vulnerability",
-      ],
-    }, {
-      "summary": "Enables and encourages the entire organization to make quality a central part of the development process",
-      "signals": [
-        "Defines policies for the engineering org that encourage quality work",
-        "Identifies and eliminates single points of failure throughout the organization",
-        "Secures time and resources from execs to support great quality",
-      ],
-      "examples": [
-        "Negotiated resources for Fix-It week with exec team",
-        "Instituted and ensured success of a 20% time policy",
-        "Started The Watch",
-      ],
-    }],
+  ORGANIZATIONAL_HEALTH: {
+    displayName: "Organizational Health",
+    category: "A",
+    description:
+      "Ensuring the overall well-being and efficiency of the organization through strategic overview and management practices.",
+    milestones: [
+      {
+        summary: "IC3",
+        signals: [
+          "You listen to different perspectives and you remove biases from your words and actions.",
+          "You contribute to a positive sense of community on your team (e.g. engage in team lunches, team offsites, and other virtual or in-person group activities, help with new-hire on-boarding).",
+          "You understand the importance of a diverse and inclusive team.",
+          "You express emotions constructively and without aggressiveness.",
+          "You apply Lepaya's values on your day to day activities.",
+          "You apply virtual-first practices that enable your team to collaborate effectively and inclusively.",
+          'You are willing to do grungy work when asked ("sweep the floors").',
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC4",
+        signals: [
+          "You help shape the Lepaya engineering culture through your involvement with activities outside of your team (e.g. presenting tech talks or on engineering alignments, participating in - RFCs, book clubs, creating interview questions).",
+          "You promote and role model Lepaya core values, leading by example.",
+          "You foster a culture of diversity, equity, and inclusion across the company and support an environment where everyone is included and heard.",
+          "You actively contribute to an environment with psychological safety.",
+          "You point out when actions or decisions contradict Lepaya core's values and suggest alternatives more aligned with our values.",
+          "You take responsibility for doing grungy work (bugs, testing, cleanup) related to your team's scope, even if ownership is fuzzy.",
+          "You connect with others with empathy and understanding.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC5",
+        signals: [
+          "Working with your manager, you leverage the unique strengths & skills of the members of your team, and help identify talent gaps required for team success.",
+          "You act as a partner to your manager in setting the cultural tone for the team. You create an environment of psychological safety where all Lepayans are included and heard to support connection, empathy, and productive conflict where dissenting opinions are valued and addressed.",
+          "You champion good virtual-first practices that help your team collaborate effectively and inclusively.",
+          "You lead by example. You are aware of your public presence and actions and their influence on the people around them and Lepaya's culture.",
+          "You create psychological safety and encourage a growth mindset with colleagues, supporting experimentation and iteration towards audacious goals and promoting a blameless culture.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC6",
+        signals: [
+          "You build relationships and connections, and use inclusive meeting practices to support an inclusive environment for all Lepayans.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC7",
+        signals: ["Same as previous"],
+        examples: ["to de added"],
+      },
+    ],
   },
 
-  "INITIATIVE": {
-    "displayName": "Initiative",
-    "category": "B",
-    "description": "Challenges the status quo and effects positive organizational change outside of mandated work",
-    "milestones": [{
-      "summary": "Identifies opportunities for organizational change or product improvements",
-      "signals": [
-        "Writes Hatch posts about improvement opportunities",
-        "Raises meaningful tensions in tactical meetings",
-        "Asks leadership team probing questions at FAM",
-      ],
-      "examples": [
-        "Wrote about problems with TTR on Hatch",
-        "Wrote about content policy problems on Hatch",
-        "Reported a site issue in Github",
-      ],
-    }, {
-      "summary": "Causes change to positively impact a few individuals or minor improvement to an existing product or service",
-      "signals": [
-        "Picks bugs off the backlog proactively when blocked elsewhere",
-        "Makes design quality improvements unprompted",
-        "Takes on trust and safety tasks proactively when blocked elsewhere",
-      ],
-      "examples": [
-        "Advocated on own behalf for a change in role",
-        "Implemented flow typing for promises",
-        "Audited web client performance in Chrome and proposed fixes",
-      ],
-    }, {
-      "summary": "Causes change to positively impact an entire team or instigates a minor feature or service",
-      "signals": [
-        "Demonstrates concepts proactively with prototypes",
-        "Fixes complicated bugs outside of regular domain",
-        "Takes ownership of systems that nobody owns or wants",
-      ],
-      "examples": [
-        "Defined style guide to resolve style arguments",
-        "Proposed and implemented at-mentions prototype",
-        "Implemented video for Android independently, unprompted",
-      ],
-    }, {
-      "summary": "Effects change that has a substantial positive impact on the engineering organization or a major product impact",
-      "signals": [
-        "Champions and pioneers new technologies to solve new classes of problem",
-        "Exemplifies grit and determination in the face of persistent obstacles",
-        "Instigates major new features, services, or architectures",
-      ],
-      "examples": [
-        "Created the interviewing rubric and booklet",
-        "Implemented and secured support for native login",
-        "Migrated medium2 to mono repo and bazel",
-      ],
-    }, {
-      "summary": "Effects change that has a substantial positive impact on the whole company",
-      "signals": [
-        "Creates a new function to solve systemic issues",
-        "Galvanizes the entire company and garners buy in for a new strategy",
-        "Changes complex organizational processes",
-      ],
-      "examples": [
-        "Migrated the organization from Holacracy",
-        "Built Medium Android prototype and convinced execs to fund it",
-        "Convinced leadership and engineering org to move to Medium Lite architecture",
-      ],
-    }],
+  WORK_BREAKDOWN: {
+    displayName: "Work breakdown",
+    category: "A",
+    description:
+      "The process of deconstructing projects into manageable parts, ensuring clarity and alignment for execution.",
+    milestones: [
+      {
+        summary: "IC3",
+        signals: [
+          "You understand how the team breaks down the work.",
+          "You are learning to work in short iterations, and when longer iterations are necessary. With guidance from your teammates and manager, you're ensuring that tasks are sized suitably for continuous integration and incremental delivery.",
+          "You are learning to estimate work similar to what you have previously done.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC4",
+        signals: [
+          "You understand how your tasks relate to your team's objectives and strategy. For each task executed, you zoom out and make a sanity check to guarantee the breakdown makes sense and is helping to achieve the team objectives.",
+          "You actively work in short iterations, deploying code daily, and consciously choose longer iterations when they are more effective.",
+          "You think a step or two ahead in your work, solve the right problems before they become bigger problems, and problem-solve with more experienced engineers when you are stuck.",
+          "You are proficient in estimating familiar tasks and are learning to estimate",
+          "You are becoming a product-minded professional and bring well-backed product suggestions and product/engineering tradeoffs to the table.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC5",
+        signals: [
+          "You plan and review epics and projects critically and ensure they’re appropriately broken down and prioritized, and well understood by the team.",
+          "You help the team members understand how their work connects with team objectives and strategy.",
+          "You provide accurate estimates, effectively and timely communicating uncertainties and potential delays with a well-defined risk assessment approach.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC6",
+        signals: [
+          "You review cross-team work critically and ensure it’s appropriately broken down and prioritized, and well understood by all involved teams.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC7",
+        signals: [
+          "You review organization-wide work critically and ensure it’s appropriately broken down and prioritized across the organization.",
+        ],
+        examples: ["to de added"],
+      },
+    ],
   },
 
-  "CAREER_DEVELOPMENT": {
-    "displayName": "Career development",
-    "category": "C",
-    "description": "Provides strategic support to engineers to help them build the career they want",
-    "milestones": [{
-      "summary": "Gives insight into opportunities and helps identify individuals' strengths and weaknesses",
-      "signals": [
-        "Advocates on behalf and in defense of a group member",
-        "Shares opportunities for improvements and recognises achievements",
-        "Explains appropriate available industry paths",
-      ],
-      "examples": [
-        "Collected and delivered feedback",
-        "Discussed career options and areas of interest informally",
-        "Hosted a Floodgate Academy intern",
-      ],
-    }, {
-      "summary": "Formally supports and advocates for one person and provides tools to help them solve career problems",
-      "signals": [
-        "Ensure a group member has an appropriate role on their team",
-        "Offers effective career advice to group members, without being prescriptive",
-        "Creates space for people to talk through challenges",
-      ],
-      "examples": [
-        "Set up and attended regular, constructive 1:1s",
-        "Provided coaching on how to have difficult conversations",
-        "Taught group members the GROW model",
-      ],
-    }, {
-      "summary": "Inspires and retains a small group of people and actively pushes them to stretch themselves",
-      "signals": [
-        "Discusses paths, and creates plans for personal and professional growth",
-        "Advocates to align people with appropriate roles within organization",
-        "Works with team leads to elevate emerging leaders",
-      ],
-      "examples": [
-        "Reviewed individual group member progression every 6 weeks",
-        "Suggested appropriate group member for Tech Lead position",
-        "Arranged a requested switch of discipline for a group member",
-      ],
-    }, {
-      "summary": "Manages interactions and processes between groups, promoting best practices and setting a positive example",
-      "signals": [
-        "Manages team transitions smoothly, respecting team and individual needs",
-        "Develops best practices for conflict resolution",
-        "Ensures all group members' roles are meeting their career needs",
-      ],
-      "examples": [
-        "Completed training on situational leadership",
-        "Built a resourcing plan based on company, team, and individual goals",
-        "Prevented regretted attrition with intentional, targeted intervention",
-      ],
-    }, {
-      "summary": "Supports the development of a signficant part of the engineering org, and widely viewed as a trusted advisor",
-      "signals": [
-        "Supports and develops senior leaders",
-        "Identified leadership training opportunities for senior leadership",
-        "Pushes everyone to be as good as they can be, with empathy",
-      ],
-      "examples": [
-        "Provided coaching to group leads",
-        "Devised Pathwise curriculum for group leads",
-        "Advocated to execs for engineer development resources and programs",
-      ],
-    }],
+  BUSINESS_ACUMEN: {
+    displayName: "Business Acumen",
+    category: "A",
+    description:
+      "Understanding and leveraging business dynamics and product to make informed decisions that contribute to organizational success.",
+    milestones: [
+      {
+        summary: "IC3",
+        signals: [
+          "You engage in active listening sessions (Weekly peeks, Engineering Alignments, ad-hoc Lepaya sessions, etc.) to increase your learning and guide your work/priorities.",
+          "You have a basic understanding of your team's domain and how it contributes to overall business strategy.",
+          "You understand Lepaya's trainings basic structures like Programs, Modules, Bites and Classrooms.",
+          "You participate in Lepaya's training sessions regularly, where you not only gain knowledge but also actively provide feedback to enhance the product.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC4",
+        signals: [
+          "You have a working knowledge of Lepaya's organizational/team structure and understand how teams work together across Lepaya.",
+          "You understand the whole Lepaya's training flow and the big picture of how the systems Lepaya builds support the business.",
+          "Product Expertise - You actively keep customer needs in mind and leverage input from product stakeholders as available to determine the right technical solutions to deliver customer value quickly.",
+          "You understand your customers, the business’s goals and your team’s goals. You ensure your work will have the greatest customer impact.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC5",
+        signals: [
+          "You have a thorough understanding of your team's domains, and how it contributes to overall business strategy.",
+          "You have a strong alliance with your product manager and seek frequent feedback from them.",
+          "You are a product-minded professional and bring well-backed product suggestions and product/engineering tradeoffs to the table.",
+          "You are well-versed in the HR tool ecosystem, including LMS, LXD, HRIS, and understand where Lepaya's systems fit within this landscape, using this knowledge to shape the development within your work domain.",
+          "Domain Expertise - You demonstrate a high level of depth in your team's domain.",
+          "You know which levers to pull to drive meaningful results and understand the wider, cross-functional implications of your work.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC6",
+        signals: [
+          "You have a thorough understanding of your domain, strategy, and how it aligns with broader market trends, enabling you to effectively contribute to the strategy definition.",
+          "You deeply comprehend adjacent teams' strategies, the intersection with your team, and effectively communicate these correlations within your domain.",
+          "Domain Expertise - You demonstrate a high level of depth in your stream.",
+          "Innovation - You partner with cross-functional stakeholders to identify major new business opportunities unlocked by technical capabilities.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC7",
+        signals: [
+          "You have a deep understanding of the entire business and how its domains contribute to the overarching business strategy.",
+          "You proactively anticipate industry trends, allowing you to integrate these insights strategically, positively impacting the business's direction.",
+        ],
+        examples: ["to de added"],
+      },
+    ],
   },
 
-  "ORG_DESIGN": {
-    "displayName": "Org design",
-    "category": "C",
-    "description": "Defines processes and structures that enables the strong growth and execution of a diverse eng organization",
-    "milestones": [{
-      "summary": "Respects and participates in processes, giving meaningful feedback to help the organization improve",
-      "signals": [
-        "Reflects on meetings that leave them inspired or frustrated",
-        "Teaches others about existing processes",
-        "Actively participates and makes contributions within organizational processes",
-      ],
-      "examples": [
-        "Facilitated effective tactical meeting with empathy",
-        "Explained tactical meeting format to a new hire",
-        "Provided feedback on sprint planning meeting",
-      ],
-    }, {
-      "summary": "Identifies opportunities to improve existing processes and makes changes that positively affect the local team",
-      "signals": [
-        "Defines meeting structure and cadence that meets team needs",
-        "Engages in organizational systems thinking",
-        "Advocates for improved diversity and inclusion, and proposes ideas to help",
-      ],
-      "examples": [
-        "Defined Frankenmeeting structure for small team",
-        "Improved Watch on-call rotation scheduling",
-        "Defined standard channels for inter-team communication",
-      ],
-    }, {
-      "summary": "Develops processes to solve ongoing organizational problems",
-      "signals": [
-        "Creates programs that meaningfully improve organizational diversity",
-        "Solves long-standing organizational problems",
-        "Reallocates resources to meet organizational needs",
-      ],
-      "examples": [
-        "Developed baseline team templates for consistency",
-        "Created bug-rotation program to address ongoing quality issues",
-        "Defined Guilds manifesto and charter",
-      ],
-    }, {
-      "summary": "Thinks deeply about organizational issues and identifies hidden dynamics that contribute to them",
-      "signals": [
-        "Evaluates incentive structures and their effect on execution",
-        "Analyzes existing processes for bias and shortfall",
-        "Ties abstract concerns to concrete organizational actions or norms",
-      ],
-      "examples": [
-        "Connected mobile recruiting difficulties to focus on excellence",
-        "Raised leadership level change discrepancies",
-        "Analyzed the hiring rubric for false negative potential",
-      ],
-    }, {
-      "summary": "Leads initiatives to address issues stemming from hidden dynamics and company norms",
-      "signals": [
-        "Builds programs to train leadership in desired skills",
-        "Creates new structures that provide unique growth opportunities",
-        "Leads planning and communication for reorgs",
-      ],
-      "examples": [
-        "Lead efforts to increase number of mobile engineers",
-        "Directed resources to meaningfully improve diversity at all levels",
-        "Built the growth framework rubric",
-      ],
-    }],
+  TECHNICAL_STRATEGY: {
+    displayName: "Technical Strategy",
+    category: "B",
+    description:
+      "Ensuring the right long-term technical decisions are being made by the organization - knowing what systems to build; making technical choices when there are not clear solutions. What standards apply to all the boxes in the organizations architecture diagrams?",
+    milestones: [
+      {
+        summary: "IC3",
+        signals: [
+          "You understand our Tech direction and apply it to plan and deliver your work and to give feedback.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC4",
+        signals: [
+          "You consistently align your work with our Tech direction and promptly highlight diversions from it.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC5",
+        signals: [
+          "You are responsible for aligning the software and systems in your team to the overall technical strategy, making tradeoffs where appropriate in consultation with more senior engineers.",
+          "You actively promote the technical strategy within your team.",
+          "You may contribute to the definition of the medium-to-long term technical strategy.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC6",
+        signals: [
+          "You are accountable for aligning the software and systems in your area to the overall technical strategy, making tradeoffs where appropriate in consultation with more senior engineers.",
+          "You help to shape the technical strategy and actively promote it within your organization.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC7",
+        signals: [
+          "You partner with the ProdTech leadership to define the long term vision that factors in both a deep understanding of what is happening in the business and in the market as well as the technical limitations and possibilities of Lepaya's software and systems.",
+          "You find new and creative ways of leveraging customer insights and including customer voices to influence strategy.",
+        ],
+        examples: ["to de added"],
+      },
+    ],
   },
 
-  "WELLBEING": {
-    "displayName": "Wellbeing",
-    "category": "C",
-    "description": "Supports the emotional well-being of group members in difficult times, and celebrates their successes",
-    "milestones": [{
-      "summary": "Uses tools and processes to help ensure colleagues are healthy and happy",
-      "signals": [
-        "Keeps confidences unless legally or morally obliged to do otherwise",
-        "Applies the reasonable person principle to others",
-        "Avoids blame and focuses on positive change",
-      ],
-      "examples": [
-        "Ensured group members were taking enough vacation",
-        "Put themself in another's shoes to understand their perspective",
-        "Checked in with colleague showing signs of burnout",
-      ],
-    }, {
-      "summary": "Creates a positive, supportive, engaging team environment for group members",
-      "signals": [
-        "Sheds light on other experiences to build empathy and compassion",
-        "Validates ongoing work and sustains motivation",
-        "Proposes solutions when teams get bogged down or lose momentum",
-      ],
-      "examples": [
-        "Coordinated a small celebration for a project launch",
-        "Connected tedious A|B testing project with overall company goals",
-        "Noted a team without a recent win and suggested some easy quick wins",
-      ],
-    }, {
-      "summary": "Manages expectations across peers, leads in the org, promotes calm, and prevents consensus building",
-      "signals": [
-        "Trains group members to separate stimulus from response",
-        "Maintains a pulse on individual and team morale",
-        "Helps group members approach problems with curiosity",
-      ],
-      "examples": [
-        "Completed training on transference and counter transference",
-        "Completed training on compromise and negotiation techniques",
-        "Reframed a problem as a challenge, instead of a barrier, when appropriate",
-      ],
-    }, {
-      "summary": "Advocates for the needs of teams and group members, and proactively works to calm the organization",
-      "signals": [
-        "Ensures team environments are safe and inclusive, proactively",
-        "Grounds group member anxieties in reality",
-        "Tracks team retention actively and proposes solutions to strengthen it",
-      ],
-      "examples": [
-        "Relieved org tension around product direction by providing extra context",
-        "Encouraged group members to focus on what they can control",
-        "Guided people through complex organizational change",
-      ],
-    }, {
-      "summary": "Manages narratives, channels negativity into inspiration and motivation, and protects the entire team",
-      "signals": [
-        "Recognizes and points out narratives when appropriate",
-        "Works to reshape narratives from victimization to ownership",
-        "Increases the psychological safety of the entire team",
-      ],
-      "examples": [
-        "Converted group member from a problem haver to a problem solver",
-        "Challenged false narrative and redirected to compassion and empathy",
-        "Cultivated and championed a culture of empathy within the entire team",
-      ],
-    }],
+  CODE_FLUENCY: {
+    displayName: "Code Fluency",
+    category: "B",
+    description: "The ability to read and write code fluently and well.",
+    milestones: [
+      {
+        summary: "IC3",
+        signals: [
+          "You translate ideas into correct and readable code.",
+          "You understand that the responsibility of code readability resides with the author, and you prioritize simplicity unless performance improvements justify complexity based on data.",
+          "You are able to reproduce and adapt existing code in different contexts, generalizing concepts instead of just copying and pasting.",
+          "Your code is free of glaring errors, with bugs typically found in edge cases or design rather than mainline paths. It is well documented, well tested, and you balance the use of manual and automated tests based on project needs.",
+          "You participate in code reviews, engage in the reconciliation of different opinions, actively question to learn the codebase and technologies, and follow best practices established by others.",
+          "You deliver code in alignment with our technical direction, ensuring it contributes productively to the broader project.",
+          "You are learning to navigate through your team's codebases, debug code effectively, and to understand the third-party libraries, platforms, and systems you rely on. With support, you can make good use of them.",
+          "You are learning the industry's best practices for your development environment, including best practices in key frameworks relevant to your specialization (e.g., React for frontend development, NestJS for backend development).",
+          "You are learning practices for managing and accessing data structures, such as using SQL or DynamoDB for backend operations and retrieving data from APIs and caching for frontend tasks.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC4",
+        signals: [
+          "You write code that captures the essential nature of the solution and is appropriately flexible, reusable, efficient, and adaptable to changing requirements.",
+          "You ensure high code quality in code reviews. You adopt approaches (e.g., apply best practices and coding standards, help resolve differences of opinions) to foster an effective/collaborative code review culture.",
+          "You avoid reinventing the wheel by leveraging other Lepaya solutions or off-the-shelf solutions with the possible trade-off in mind.",
+          "You achieve high throughput in coding tasks while maintaining appropriately high quality.",
+          "You are able to comfortably and independently navigate through large codebases efficiently, debug code effectively, and understand the third-party libraries, platforms, and systems you rely on.",
+          "You are well-versed in the industry's best practices for your development environment, including expertise in key frameworks relevant to your specialization (e.g., React for frontend development, NestJS for backend development).",
+          "You apply best practices for managing and accessing data structures, such as using SQL or DynamoDB for backend operations and retrieving data from APIs and caching for frontend tasks.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC5",
+        signals: [
+          "You look for ways to simplify code and infrastructure. You prioritize tasks that lead to lower system and infrastructure maintenance and migration costs with meaningful and measurable impact.",
+          "You can find ways to improve developer efficiency as measured by cycle time, ramp-up time, or other similar measurements.",
+          "You write libraries and modules that can be extended and adopted by other teams at Lepaya to increase their efficiency.",
+          "You have a strong awareness of the ecosystem of tools and libraries supporting your primary programming language and development environment and a strong grasp of the idioms and patterns of your language.",
+          "You are proficient in the industry's best practices for your development environment, including deep expertise in key frameworks relevant to your specialization (e.g., React for frontend development, NestJS for backend development).",
+          "You are proficient in managing and accessing data structures, such as using SQL or DynamoDB for backend operations and retrieving data from APIs and caching for frontend tasks.",
+          "You have a T-shaped or W-shaped skill set. You are skilled in actively addressing more complex challenges across different aspects of the stack. For backend developers, this may mean comfortably managing advanced frontend, databases and infrastructure tasks.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC6",
+        signals: [
+          "The expectations for code fluency do not go beyond IC5 (though some specialist may go deep in this area)",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC7",
+        signals: [
+          "The expectations for code fluency do not go beyond IC5 (though some specialist may go deep in this area)",
+        ],
+        examples: ["to de added"],
+      },
+    ],
   },
 
-  "ACCOMPLISHMENT": {
-    "displayName": "Accomplishment",
-    "category": "C",
-    "description": "Inspires day to day excellence, maximises potential and effectively resolves performance issues with compassion",
-    "milestones": [{
-      "summary": "Helps individuals identify blockers and helps them identify next steps for resolution",
-      "signals": [
-        "Notices when someone is stuck and reaches out",
-        "Helps others break down problems into feasible, tangible next steps",
-        "Talks through problems non-judgmentally",
-      ],
-      "examples": [
-        "Completed training on diagnosing problems",
-        "Unblocked a group member",
-        "Reinforces and affirms positive feedback for good work",
-      ],
-    }, {
-      "summary": "Helps individuals resolve difficult performance issues, with insight, compassion, and skill",
-      "signals": [
-        "Gathers context outside the immediate problem",
-        "Recognizes issues within local environment and suggests change",
-        "Works to encourage ownership of actions and responsibilities",
-      ],
-      "examples": [
-        "Completed training on decision making",
-        "Convinced a group member to solve a problem directly, rather than doing it for them",
-        "Gave honest feedback about poor performance, with compassion",
-      ],
-    }, {
-      "summary": "Intervenes in long-standing performance issues with targeted behavior change or performance plans",
-      "signals": [
-        "Aggregates signals of poor performance and creates process for improvement",
-        "Investigates motivation and externalities for consistent poor performance",
-        "Puts together comprehensive, achievable performance plans",
-      ],
-      "examples": [
-        "Worked with group member to address persistent communication failures",
-        "Arranged a transfer to another team, resulting in improved performance",
-        "Managed group member closely to maximise chances of PIP success",
-      ],
-    }, {
-      "summary": "Mediates escalated situations, empowers underperforming teams, and resolves conflict",
-      "signals": [
-        "Recognizes heightened situations and toxic or aggressive interactions",
-        "Inserts themself into conflict where appropriate to calm and mediate",
-        "Encourages open dialog and builds trust between parties in conflict",
-      ],
-      "examples": [
-        "Empowered a team to drive forward amidst uncertainty",
-        "Protected team from externalities so they could focus on goals",
-        "Mediated sit-down between team members to address tension",
-      ],
-    }, {
-      "summary": "Resolves complex organizational dysfunction, or persistent conflict at senior levels",
-      "signals": [
-        "Takes control of dysfunctional teams to organise chaos",
-        "Repairs broken team dynamics and builds harmony",
-        "Presides over a well-oiled team of teams",
-      ],
-      "examples": [
-        "Turned around the performance of a problematic team",
-        "De-escalated serious tensions between teams",
-        "Rebuilt trust between senior team leads",
-      ],
-    }],
+  SOFTWARE_DESIGN: {
+    displayName: "Software Design",
+    category: "B",
+    description:
+      "The ability to design software components with reasonable APIs and interaction patterns (writing good classes, modules, etc - building out a box in your architecture diagram).",
+    milestones: [
+      {
+        summary: "IC3",
+        signals: [
+          "You are able to understand the existing designs and technology choices within your team's domain, and you make appropriate adjustments to existing designs when necessary.",
+          "You write code modules that exhibit good separation of concerns and well-defined boundaries.",
+          "You are learning the ecosystem of tools and libraries supporting your primary programming language and development environment and a good knowledge of the idioms and patterns of your language.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC4",
+        signals: [
+          "You are able to independently design software components in well-scoped scenarios, with maintenance as key consideration. Your components are testable, debuggable, and have logical APIs that are not easily misused.",
+          "You have a strong grasp of the libraries, platforms, and systems that you rely on, allowing you to apply them expertly.",
+          "You know industry best practices for your primary programming language (e.g.: for backend engineers, object oriented programming, design patterns and SOLID principles).",
+          "You don't increase toil and tech debt unintentionally.",
+          "You are well-versed in the ecosystem of tools and libraries supporting your primary programming language and development environment and a good knowledge of the idioms and patterns of your language.",
+          "You are developing a T-shaped skill set by handling straightforward tasks in related areas confidently. If you primarily work in backend development, for example, you're also able to manage front-end tasks and handle basic infrastructure issues as needed.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC5",
+        signals: [
+          "You are responsible for designing the software or systems required in your area of ownership and ensuring that they meet their design objectives.",
+          "You are able to give quality feedback on designs written by other members of your team, asking probing, insightful questions that solidify choices and surface erroneous assumptions.",
+          "You effectively and quickly debug cross-module issues, and may intuit where bugs might lie due to your deep knowledge of the libraries, platforms, and systems that your software relies on.",
+          "You anticipate future use cases and make design decisions that minimize the cost of future changes. You are able to successfully balance between YAGNI and over simplifying.",
+          "When designing software, you consciously manage technical debt.",
+          "You know when to make refactors, smaller code tidings and when it’s better to leave things as-is.",
+          "You are proficient in industry best practices for your main programming languages (e.g.: for backend: object oriented programming, design patterns and SOLID principles).",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC6",
+        signals: [
+          "You design software components that are difficult to misuse and flexible in the face of an increase in the number of adjacent use cases as appropriate to the direction of the business (neither under nor over-designed).",
+          "You reduce complex designs and concepts to simple foundational components through correct choices of data structures, applications of algorithms, or other deep insight into the problem space and create simple interfaces to complex underlying systems.",
+          "You are able to review designs in related areas with high quality and ensure quality for cross-team cross-module design/API issues.",
+          "You have deep expertise in implementation or principles behind some of the libraries, platforms, and systems relevant to your team's work.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC7",
+        signals: ["Same as previous"],
+        examples: ["to de added"],
+      },
+    ],
   },
 
-  "MENTORSHIP": {
-    "displayName": "Mentorship",
-    "category": "D",
-    "description": "Provides support to colleagues, spreads knowledge, and develops the team outside formal reporting structures",
-    "milestones": [{
-      "summary": "Informally mentors individuals in an ad-hoc way, supports new hires, and conveys institutional knowledge",
-      "signals": [
-        "Makes themself available for informal support and advice",
-        "Acts as sounding board for peers and more junior members",
-        "Provides sound advice when asked",
-      ],
-      "examples": [
-        "Acted as an onboarding buddy",
-        "Paired with an engineer to help them with an unfamiliar area",
-        "Helped a colleague understand their feelings",
-      ],
-    }, {
-      "summary": "Mentors people proactively, and guides people to realizations rather than providing the answer",
-      "signals": [
-        "Takes time to explain concepts and best practices",
-        "Asks questions to illuminate concepts, rather than stating them",
-        "Allows others to lead efforts when it will help their development",
-      ],
-      "examples": [
-        "Shared interesting article with a team member to help with their growth",
-        "Offered unprompted feedback to help growth, with empathy",
-        "Lead from behind to support someone new to a leadership role",
-      ],
-    }, {
-      "summary": "Teaches small groups of engineers and contributes to Medium's shared knowledge base",
-      "signals": [
-        "Avoids siloing information when it can be usefully shared with others",
-        "Works to increase the bus factor of systems",
-        "Finds tools that work best for a team member's personality",
-      ],
-      "examples": [
-        "Gave a brown bag presentation on payments",
-        "Wrote Hatch post on avoiding RDS backfill issues",
-        "Wrote Medium-U content module",
-      ],
-    }, {
-      "summary": "Encourages people to mentor each other, and creates ways for them to do so",
-      "signals": [
-        "Defines an entire curriculum for a discipline",
-        "Draws positive attention to well-modeled mentor and teaching behaviours",
-        "Creates brown bag series and lines up speakers",
-      ],
-      "examples": [
-        "Created and lead Medium's Women in Eng group",
-        "Organized an Eng All Hands with an outside speaker",
-        "Designed and taught web client guild curriculum",
-      ],
-    }, {
-      "summary": "Instills and promotes a culture of learning and development within the team",
-      "signals": [
-        "Sets incentive structures to recognise and reward mentorship",
-        "Empowers team members to develop themselves",
-        "Role models productive and healthy mentor relationships",
-      ],
-      "examples": [
-        "Instituted the professional education budget for engineers",
-        "Mentored mentors",
-        "Started the eng advisor program and lined up external mentors",
-      ],
-    }],
+  ARCHITECTURE_DESIGN: {
+    displayName: "Architecture Design",
+    category: "B",
+    description:
+      "The ability to design systems of interacting components - e.g. a collection of interacting features or the architecture of a product, binary or significant service (what are the boxes in your architecture diagram, how do they interact).",
+    milestones: [
+      {
+        summary: "IC3",
+        signals: [
+          "You understand the most important architectural components of your team's domain",
+          "You are able to mindfully reproduce patterns and use existing abstractions and components in our codebases to architect solutions for simple problems",
+          "You are able to decompose a simple problem or business scenario into a solution composed of multiple software components interacting with each other",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC4",
+        signals: [
+          "You have a good grasp of the architectural patterns and components of your team's domain.",
+          "You are able to understand the breakdown and responsibilities of multiple software components interacting with each other.",
+          "You proactively identify issues with technical dependencies of your project that are owned by other teams and surface them.",
+          "You notice and avoid architectural deviations within your team, validating with a more experienced engineer, when necessary.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC5",
+        signals: [
+          "You make correct technology suggestions for components needed as part of a larger architecture, including making build vs. buy choices for specific components and choosing frameworks.",
+          "You architect services and systems using well accepted patterns to allow for iterative, autonomous development and future scaling.",
+          "You are able to create coherent designs with multiple components interacting across API or system boundaries; bugs do not creep in at the boundaries between components due to mismatches in expectations of what is technically feasible.",
+          "You are capable of rolling out a component or major feature (and deprecating an existing system or feature) reliably.",
+          "You avoid introducing toil and future maintenance work by proactively avoiding scaling issues and providing adequate documentation.",
+          "You independently and preemptively identify and resolve technical risks or deviations before they jeopardize the project. You resolve cross-team dependencies earlier to ensure the successful execution of the project.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC6",
+        signals: [
+          "You make correct technology choices for components needed as part of a larger architecture, including recommending build vs. buy approaches for specific components and choosing frameworks.",
+          "You are capable of owning the overall health and engineering quality of a system or collection of features—for example, driving regular health reviews, curating test strategy, etc.—and ensuring that the health and maintenance of your systems do not depend on the maintainers having your expertise.",
+          "You are capable of driving the overall testing strategy of a significant system with high reliability or quality requirements.",
+          "You are capable of designing systems with significant ambiguity and/or lots of systems that depend on it.",
+        ],
+        examples: ["to de added"],
+      },
+      {
+        summary: "IC7",
+        signals: [
+          "You can design systems that require research on what is possible rather than relying on past experience, and where, consequently, a significant portion of the challenge is designing an appropriately staged validation plan.",
+          "You define the high-level systems that need to be built to meet strategic objectives.",
+          "You are accountable for the successful holistic technical architecture of the organization.",
+        ],
+        examples: ["to de added"],
+      },
+    ],
   },
+};
 
-  "EVANGELISM": {
-    "displayName": "Evangelism",
-    "category": "D",
-    "description": "Promotes Medium to the outside world and establishes it as an attractive and thoughtful place to work",
-    "milestones": [{
-      "summary": "Represents Medium well externally, and influences individuals positively",
-      "signals": [
-        "Shares personal and organizational successes with their network",
-        "Attends Medium-hosted events and talks with guests",
-        "Communicates genuine and honest excitement about their work externally",
-      ],
-      "examples": [
-        "Shared a Medium product launch post on Facebook",
-        "Acted as a guide for a non-friend visitor to the office",
-        "Supported PR efforts by giving a quote or having a photo taken",
-      ],
-    }, {
-      "summary": "Participates more centrally in small events, and takes simple actions that positively influence groups of people",
-      "signals": [
-        "Takes meaningful action to introduce people to Medium",
-        "Joined public Slack group and represented Medium appropriately, and well",
-        "Organizes positive small- or medium-sized events that bring people to Medium",
-      ],
-      "examples": [
-        "Volunteered as a helper for CODE2040 writing workshop",
-        "Organized a short tour of the office by college students",
-        "Talked at a Women Who Code event hosted at Medium",
-      ],
-    }, {
-      "summary": "Works hard to positively influence large groups of people on their views of Medium",
-      "signals": [
-        "Mentors or participates in a high visibility way in an external organization",
-        "Builds fruitful partnerships with external organizations",
-        "Writes blog posts about Medium that receive moderate traffic",
-      ],
-      "examples": [
-        "Represented Medium on a panel at a conference of industry experts",
-        "Established close ties with Creative Commons",
-        "Built a durable, long-standing relationship with Code2040",
-      ],
-    }, {
-      "summary": "Establishes Medium as an great, innovative company and workplace to the whole industry",
-      "signals": [
-        "Establishes themself as an industry thought leader who attracts talent",
-        "Publishes material about Medium's organizational or technical innovations",
-        "Leverages significant following to evangelise Medium",
-      ],
-      "examples": [
-        "Published a paper on Medium technology in a peer-reviewed journal",
-        "Authored joint-press release with EFF on DNT",
-        "Published “Why Content Editable Is Terrible” on the Medium engineering blog",
-      ],
-    }, {
-      "summary": "Introduces Medium in a positive light to a wider audience outside the industry",
-      "signals": [
-        "Delivers key messages to broad, mainstream audiences",
-        "Influences people with large audiences to talk about Medium positively",
-        "Drives recognition and adoption of Medium in significant numbers",
-      ],
-      "examples": [
-        "Published or interviewed in a mainstream newspaper or website outside tech",
-        "Keynoted a conference with international attention",
-        "Represented Medium in national televised media",
-      ],
-    }],
-  },
-
-  "RECRUITING": {
-    "displayName": "Recruiting",
-    "category": "D",
-    "description": "Strengthens Medium's team by bringing in excellent staff members",
-    "milestones": [{
-      "summary": "Brings new candidates into the pipeline and understands how to evaluate candidates at Medium",
-      "signals": [
-        "Reviews existing network for hiring leads regularly",
-        "Shadows interviews to gain familiarity with process",
-        "Reviews current job postings regularly",
-      ],
-      "examples": [
-        "Completed interview calibration",
-        "Set up casual sessions to practice asking questions",
-        "Referred appropriate individuals for open positions",
-      ],
-    }, {
-      "summary": "Interviews regularly, helps the team make meaningful hiring decisions, and helps build a diverse pipeline",
-      "signals": [
-        "Uses interview rubric to provide clear, objective feedback on candidates",
-        "Interviews candidates with empathy and treats them all with equal respect",
-        "Researches approaches for sourcing candidates and diversifying hiring",
-      ],
-      "examples": [
-        "Added observable evidence for every rating",
-        "Started a monthly brunch for candidates to meet Medium employees",
-        "Tested a new service for quality and diversity of candidates",
-      ],
-    }, {
-      "summary": "Maintains and strengthens the integrity of the current process, and regularly brings in great candidates",
-      "signals": [
-        "Teaches new interviewers how to interview with empathy",
-        "Models great interview technique and feedback when shadowed",
-        "Reverse shadows trainees and helps calibrate their feedback",
-      ],
-      "examples": [
-        "Wrote new interview question which meets our question quality criteria",
-        "Brought candidates into our pipeline proactively, with a high conversion rate",
-        "Proposed useful, tangible improvements to the interview process",
-      ],
-    }, {
-      "summary": "Actively contributes to and leads hiring decisions, and goes to great lengths to source great candidates",
-      "signals": [
-        "Documents subtle cues in interviews that indicate values alignment",
-        "Makes hiring decisions, resolving discrepancies between conflicting reports",
-        "Top-grades candidates and teases out character traits",
-      ],
-      "examples": [
-        "Planned engineering summit on interview process and training",
-        "Organized and lead Medium's presence at a recruitment fair",
-        "Started CODE2040 internship program",
-      ],
-    }, {
-      "summary": "Sets recruitment strategy, invests in long-term relationships for critical roles, and recruits at scale",
-      "signals": [
-        "Sets the tone, policy and goals around building a diverse, high-quality team",
-        "Identifies and brings in promising acquisitions",
-        "Tracks industry activity, identifying opportunities for critical roles",
-      ],
-      "examples": [
-        "Talked with a senior candidate over many months to fill a critical role",
-        "Organized efforts around convincing acquired engineers to join and stay",
-        "Set goals, then tracked and reported metrics on team demographics over time",
-      ],
-    }],
-  },
-
-  "COMMUNITY": {
-    "displayName": "Community",
-    "category": "D",
-    "description": "Builds community internally, gives of themself to the team, and champions and extols company values",
-    "milestones": [{
-      "summary": "Is available and present on current teams, and works to contribute positively to company culture",
-      "signals": [
-        "Participates in team activities and offsites",
-        "Treats colleagues and clients with respect",
-        "Joins groups or committees outside regular duties",
-      ],
-      "examples": [
-        "Joined and actively participated in the web client guild",
-        "Brought a small gift back from vacation for the team",
-        "Wrote entertaining and informative Prod Ops writeups on Hatch",
-      ],
-    }, {
-      "summary": "Steps up, builds connectedness, and takes concrete actions to promote an inclusive culture",
-      "signals": [
-        "Makes space for others to participate",
-        "Collaborates with other engineers outside direct responsibilities",
-        "Finds ways to ramp up and engage new hires quickly",
-      ],
-      "examples": [
-        "Created onboarding bingo",
-        "Brought shy and introverted people into a dominant conversation",
-        "Volunteered as secretary for a team",
-      ],
-    }, {
-      "summary": "Contributes to improving team relatedness, and helps build a culture of lending support",
-      "signals": [
-        "Takes on additional Watch shifts at short notice",
-        "Pitches in to help other teams hit deadlines, without missing own deadlines",
-        "Uses position to raise difficult issues on someone's behalf",
-      ],
-      "examples": [
-        "Lead Watch cycles with little support while still contributing to projects",
-        "Started and drove the LGBTQIA ERG",
-        "Stayed positive and improved team morale during period after layoffs",
-      ],
-    }, {
-      "summary": "Exemplifies selflessness for the team without compromising responsibilities, and lifts everyone up",
-      "signals": [
-        "Goes above and beyond on the Watch, serving the team without complaint",
-        "Implements concrete programs to signficantly improve team inclusivity",
-        "Takes on large amounts of tedious grunt work for the team without being asked",
-      ],
-      "examples": [
-        "Devoted large amount of time to helping outside direct responsibilities",
-        "Refactored hundreds of legacy Shepherd nodes",
-        "Acted as sole maintainer of Boxen for years",
-      ],
-    }, {
-      "summary": "Lives the company values, guards positive culture, and defines policies that support relatedness between teams",
-      "signals": [
-        "Brings separate teams together to build relatedness",
-        "Holds individuals, teams, and leadership accountable to Medium's values",
-        "Sets the tone, policy, and goals around maintaining an inclusive company",
-      ],
-      "examples": [
-        "Organized wine and olive tasting offsite to Napa for the whole engineering org",
-        "Devised, delivered and acted on findings from an engineer happiness survey",
-        "Challenged and corrected exclusionary behaviour or policies",
-      ],
-    }],
-  },
-}
-
-export const trackIds: TrackId[] = Object.keys(tracks)
+export const trackIds: TrackId[] = Object.keys(tracks);
 
 export const categoryIds: Set<string> = trackIds.reduce((set, trackId) => {
-  set.add(tracks[trackId].category)
-  return set
-}, new Set())
+  set.add(tracks[trackId].category);
+  return set;
+}, new Set());
 
 export const categoryPointsFromMilestoneMap = (milestoneMap: MilestoneMap) => {
-  let pointsByCategory = new Map()
+  let pointsByCategory = new Map();
   trackIds.forEach((trackId) => {
-    const milestone = milestoneMap[trackId]
-    const categoryId = tracks[trackId].category
-    let currentPoints = pointsByCategory.get(categoryId) || 0
-    pointsByCategory.set(categoryId, currentPoints + milestoneToPoints(milestone))
-  })
-  return Array.from(categoryIds.values()).map(categoryId => {
-    const points = pointsByCategory.get(categoryId)
-    return { categoryId, points: pointsByCategory.get(categoryId) || 0 }
-  })
-}
+    const milestone = milestoneMap[trackId];
+    const categoryId = tracks[trackId].category;
+    let currentPoints = pointsByCategory.get(categoryId) || 0;
+    pointsByCategory.set(
+      categoryId,
+      currentPoints + milestoneToPoints(milestone)
+    );
+  });
+  return Array.from(categoryIds.values()).map((categoryId) => ({
+    categoryId,
+    points: pointsByCategory.get(categoryId) || 0,
+  }));
+};
 
-export const totalPointsFromMilestoneMap = (milestoneMap: MilestoneMap): number =>
-  trackIds.map(trackId => milestoneToPoints(milestoneMap[trackId]))
-    .reduce((sum, addend) => (sum + addend), 0)
+export const totalPointsFromMilestoneMap = (
+  milestoneMap: MilestoneMap
+): number =>
+  trackIds
+    .map((trackId) => milestoneToPoints(milestoneMap[trackId]))
+    .reduce((sum, addend) => sum + addend, 0);
 
-export const categoryColorScale = d3.scaleOrdinal()
+export const categoryColorScale = d3
+  .scaleOrdinal()
   .domain(categoryIds)
-  .range(['#00abc2', '#428af6', '#e1439f', '#e54552'])
+  .range(["#00abc2", "#428af6", "#e1439f", "#e54552"]);
 
 export const titles = [
-  {label: 'Engineer I', minPoints: 0, maxPoints: 16},
-  {label: 'Engineer II', minPoints: 17, maxPoints: 35},
-  {label: 'Senior Engineer', minPoints: 36, maxPoints: 57},
-  {label: 'Group Lead', minPoints: 36, maxPoints: 57},
-  {label: 'Staff Engineer', minPoints: 58, maxPoints: 89},
-  {label: 'Senior Group Lead', minPoints: 58, maxPoints: 89},
-  {label: 'Principal Engineer', minPoints: 90},
-  {label: 'Director of Engineering', minPoints: 90}
-]
+  { label: "Software Engineer III", minPoints: 0, maxPoints: 16 },
+  { label: "Software Engineer IV", minPoints: 17, maxPoints: 35 },
+  { label: "Software Engineer V", minPoints: 36, maxPoints: 57 },
+  { label: "Staff Engineer", minPoints: 58, maxPoints: 89 },
+  { label: "Principal Engineer", minPoints: 90 },
+];
 
 export const eligibleTitles = (milestoneMap: MilestoneMap): string[] => {
-  const totalPoints = totalPointsFromMilestoneMap(milestoneMap)
+  const totalPoints = totalPointsFromMilestoneMap(milestoneMap);
 
-  return titles.filter(title => (title.minPoints === undefined || totalPoints >= title.minPoints)
-                             && (title.maxPoints === undefined || totalPoints <= title.maxPoints))
-    .map(title => title.label)
-}
+  return titles
+    .filter(
+      (title) =>
+        (title.minPoints === undefined || totalPoints >= title.minPoints) &&
+        (title.maxPoints === undefined || totalPoints <= title.maxPoints)
+    )
+    .map((title) => title.label);
+};

@@ -1,16 +1,16 @@
 // @flow
 
-import TrackSelector from '../components/TrackSelector'
-import NightingaleChart from '../components/NightingaleChart'
-import KeyboardListener from '../components/KeyboardListener'
-import Track from '../components/Track'
-import Wordmark from '../components/Wordmark'
-import LevelThermometer from '../components/LevelThermometer'
-import { eligibleTitles, trackIds, milestones, milestoneToPoints } from '../constants'
-import PointSummaries from '../components/PointSummaries'
-import type { Milestone, MilestoneMap, TrackId } from '../constants'
 import React from 'react'
+import KeyboardListener from '../components/KeyboardListener'
+import LevelThermometer from '../components/LevelThermometer'
+import NightingaleChart from '../components/NightingaleChart'
+import PointSummaries from '../components/PointSummaries'
 import TitleSelector from '../components/TitleSelector'
+import Track from '../components/Track'
+import TrackSelector from '../components/TrackSelector'
+import Wordmark from '../components/Wordmark'
+import type { Milestone, MilestoneMap, TrackId } from '../constants'
+import { eligibleTitles, trackIds } from '../constants'
 
 type SnowflakeAppState = {
   milestoneByTrack: MilestoneMap,
@@ -50,50 +50,44 @@ const emptyState = (): SnowflakeAppState => {
     name: '',
     title: '',
     milestoneByTrack: {
-      'MOBILE': 0,
-      'WEB_CLIENT': 0,
-      'FOUNDATIONS': 0,
-      'SERVERS': 0,
-      'PROJECT_MANAGEMENT': 0,
-      'COMMUNICATION': 0,
-      'CRAFT': 0,
-      'INITIATIVE': 0,
-      'CAREER_DEVELOPMENT': 0,
-      'ORG_DESIGN': 0,
-      'WELLBEING': 0,
-      'ACCOMPLISHMENT': 0,
-      'MENTORSHIP': 0,
-      'EVANGELISM': 0,
-      'RECRUITING': 0,
-      'COMMUNITY': 0
+      "FLEXIBLE_THINKING": 0,
+      "DECISION_MAKING": 0,
+      "PROFESSIONAL_GROWTH": 0,
+      "HIRING": 0,
+      "EFFECTIVE_COMMUNICATION": 0,
+      "COLLABORATION": 0,
+      "ORGANIZATIONAL_HEALTH": 0,
+      "WORK_BREAKDOWN": 0,
+      "BUSINESS_ACUMEN": 0,
+      "TECHNICAL_STRATEGY": 0,
+      "CODE_FLUENCY": 0,
+      "SOFTWARE_DESIGN": 0,
+      "ARCHITECTURE_DESIGN": 0,
     },
-    focusedTrackId: 'MOBILE'
+    focusedTrackId: 'CODE_FLUENCY'
   }
 }
 
 const defaultState = (): SnowflakeAppState => {
   return {
-    name: 'Cersei Lannister',
+    name: 'John Doe',
     title: 'Staff Engineer',
     milestoneByTrack: {
-      'MOBILE': 1,
-      'WEB_CLIENT': 2,
-      'FOUNDATIONS': 3,
-      'SERVERS': 2,
-      'PROJECT_MANAGEMENT': 4,
-      'COMMUNICATION': 1,
-      'CRAFT': 1,
-      'INITIATIVE': 4,
-      'CAREER_DEVELOPMENT': 3,
-      'ORG_DESIGN': 2,
-      'WELLBEING': 0,
-      'ACCOMPLISHMENT': 4,
-      'MENTORSHIP': 2,
-      'EVANGELISM': 2,
-      'RECRUITING': 3,
-      'COMMUNITY': 0
+      'ARCHITECTURE_DESIGN': 1,
+      'SOFTWARE_DESIGN': 2,
+      'CODE_FLUENCY': 3,
+      'TECHNICAL_STRATEGY': 2,
+      'BUSINESS_ACUMEN': 4,
+      'WORK_BREAKDOWN': 1,
+      'ORGANIZATIONAL_HEALTH': 1,
+      'COLLABORATION': 4,
+      'EFFECTIVE_COMMUNICATION': 3,
+      'HIRING': 2,
+      'PROFESSIONAL_GROWTH': 0,
+      'DECISION_MAKING': 4,
+      'FLEXIBLE_THINKING': 2,
     },
-    focusedTrackId: 'MOBILE'
+    focusedTrackId: 'CODE_FLUENCY'
   }
 }
 
@@ -200,7 +194,7 @@ class SnowflakeApp extends React.Component<Props, SnowflakeAppState> {
             handleTrackMilestoneChangeFn={(track, milestone) => this.handleTrackMilestoneChange(track, milestone)} />
         <div style={{display: 'flex', paddingBottom: '20px'}}>
           <div style={{flex: 1}}>
-            Made with ❤️ by <a href="https://medium.engineering" target="_blank">Medium Eng</a>.
+            Made with ❤️ by <a href="https://medium.engineering" target="_blank">Medium Eng</a> and <b>adapted by <a href="https://github.com/felixjb" target="_blank">Felix</a> </b>.
             Learn about the <a href="https://medium.com/s/engineering-growth-framework" target="_blank">this version of our growth framework</a>
             {' '}and <a href="https://medium.engineering/engineering-growth-at-medium-4935b3234d25" target="_blank">what we do currently</a>.
             Get the <a href="https://github.com/Medium/snowflake" target="_blank">source code</a>.

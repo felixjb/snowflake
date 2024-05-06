@@ -1,40 +1,37 @@
-## ⚠️ Heads up: Medium isn’t using this tool anymore, but you’re welcome to!
-[Read more about our current thinking around engineer growth](https://medium.engineering/engineering-growth-at-medium-4935b3234d25).
-
 # Snowflake
 
-Snowflake is Medium's tool for planning and supporting our engineers' career development. You can read more
-about how we use this tool in our [growth framework documentation](https://medium.com/s/engineering-growth-framework).
-Our growth tool is hosted [publicly](https://snowflake.medium.com).
+Snowflake is a tool for planning and supporting engineers career development.
+Originally developed by the engineering team at [Medium](https://medium.engineering), it is a simple, web-based tool that helps engineers to set goals, track progress, and plan their career development.
 
 ![The Lannisters send their regards](https://i.imgur.com/e9DYLBr.png)
 
 ## Contributions
 
-You are free to use, change and build on this work to make it useful for your organisation. We will happily consider
-unencumbered code contributions to improve functionality, but as this is the actual tool we use within Medium, acceptance is likely to be intentional, and deliberate. Meaning, slow. As such, you may prefer to fork the codebase for your own needs. We will not accept any contributions that modify the text of the application (but, thank you in advance for pointing out any typos).
+You are free to use, change and build on this work to make it useful for your organisation. We appreciate contributions to improve functionality, fix bugs, and improve the user experience.
 
-## Installation
+## Requirements
 
-Get yarn if you don’t have it already:
+Make sure you have the following tools with the correct versions installed:
 
-`npm install -g yarn`
+- `Node.js: ^18.20.2` > **This version is strictly required**
+- `npm: ^10.5.0` > **This version is strictly required**
 
-Install dependencies:
+## Getting Started
 
-`yarn`
+This project is built using React.js with Next.js.
 
-### Running the dev server
+### React.js & Next.js
 
-`yarn dev`
+First, run the development server:
 
-### Building
+```bash
+npm run dev
+```
 
-`yarn export`
-
-This will put a static version of the site in `out/`.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Future work
 
-* Load initial data from a file, to improve flexibility.
-* Add restricted job title selection and validation.
+- Load initial data from a file, to improve flexibility.
+- Move styles to a separate file.
+- Add tests.
